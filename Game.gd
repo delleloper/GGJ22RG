@@ -8,3 +8,14 @@ func _ready():
 func win():
 	get_tree().reload_current_scene()
 	pass
+
+
+
+
+func invert():
+	get_tree().call_group("Convertibles", "switch")
+	
+
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_accept"):
+		invert()

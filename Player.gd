@@ -25,7 +25,6 @@ func _process(delta):
 			if motion == 0:
 				animator.play("idle")
 
-
 func _physics_process(delta):
 	motion = Input.get_action_strength("mRigth") - Input.get_action_strength("mLeft")
 	velocity.x = lerp(velocity.x, motion * runSpeed,0.3)
