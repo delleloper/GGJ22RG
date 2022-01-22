@@ -7,6 +7,7 @@
 extents = Vector2( 32, 16 )
 
 [node name="pinchos" type="Area2D"]
+position = Vector2( 0, -17 )
 script = ExtResource( 2 )
 
 [node name="Pinchos" type="Sprite" parent="."]

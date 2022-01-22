@@ -16,6 +16,8 @@ onready var screen_size = get_viewport_rect().size
 onready var start_position = global_position
 onready var target_position = global_position
 
+signal captured
+
 func update_target_position():
 	var targetLimits = 500
 	var target_vector = Vector2(rand_range(-1, 1), rand_range(-1, 1)) * targetLimits
@@ -56,3 +58,8 @@ func accelerate(acceleration_vector):
 func _on_Area2D_body_entered(body):
 	if body is Player:
 		update_target_position()
+
+
+func _on_Hitbox_body_entered(body):
+	if body is Player:
+		emit_signal("captured")
