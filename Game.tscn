@@ -31,6 +31,9 @@ physics_material_override = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource( 1 )
 
+[node name="Polygon2D" type="Polygon2D" parent="Floor"]
+polygon = PoolVector2Array( -964, 32, -963, -33, 963, -33, 964, 31 )
+
 [node name="moneda" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1409, 909 )
 
@@ -56,10 +59,10 @@ position = Vector2( 825, 539 )
 position = Vector2( 1178, 588 )
 
 [node name="Platform9" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1695, 686 )
+position = Vector2( 1739, 745 )
 
 [node name="Platform10" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1506, 500 )
+position = Vector2( 1519, 589 )
 
 [node name="Platform4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 168, 896 )

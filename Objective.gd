@@ -19,11 +19,12 @@ onready var target_position = global_position
 signal captured
 
 func update_target_position():
-	var targetLimits = 500
+	var targetLimits = 800
 	var target_vector = Vector2(rand_range(-1, 1), rand_range(-1, 1)) * targetLimits
 	target_position = start_position + target_vector
+	target_position.y = clamp(target_vector.y, 0, 1000)
+	target_position.x = wrapf(target_vector.x, 0,screen_size.x)
 	
-
 func is_at_target_position(): 
 	# Stop moving when at target +/- tolerance
 	return (target_position - global_position).length() < TOLERANCE
@@ -37,13 +38,11 @@ func _physics_process(delta):
 
 		WANDER:
 			accelerate_to_point(target_position, ACCELERATION * delta)
-
 			if is_at_target_position():
 				state = IDLE
 
 	velocity = move_and_slide(velocity)
-	position.x = wrapf(position.x, 0,screen_size.x)
-#	position.y = wrapf(position.y, 0,screen_size.y)
+	print(target_position)
 	
 func accelerate_to_point(point, acceleration_scalar):
 	var direction = (point - global_position).normalized()
