@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://moneda.tscn" type="PackedScene" id=2]
+[ext_resource path="res://piso.png" type="Texture" id=3]
+[ext_resource path="res://pinchos.tscn" type="PackedScene" id=4]
+[ext_resource path="res://controlador.gd" type="Script" id=5]
+
+[sub_resource type="PhysicsMaterial" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 633.5, 82 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float colorAfectar = 0.0;
+
+void fragment(){
+	vec4 c = textureLod(SCREEN_TEXTURE,SCREEN_UV,0.0).rgba;
+	c.r = 1.0 - c.r;
+	c.g = 1.0 - c.g;
+	c.b = 1.0 - c.b;
+	c.a = colorAfectar + c.a;
+	COLOR.rgba = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/colorAfectar = 0.0
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 764, 422 )
+runSpeed = 417
+jumpSpeed = 800
+gravity = 50
+
+[node name="Objective" type="Node2D" parent="."]
+position = Vector2( -9, -94 )
+
+[node name="moneda" parent="." instance=ExtResource( 2 )]
+position = Vector2( 348, 530 )
+
+[node name="moneda2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 432, 532 )
+
+[node name="moneda3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 386, 463 )
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2( 2, 0 )
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2( 640.5, 635 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Platform"]
+position = Vector2( 627, 377 )
+scale = Vector2( 0.676673, 0.676673 )
+texture = ExtResource( 3 )
+
+[node name="pinchos" parent="." instance=ExtResource( 4 )]
+position = Vector2( 934, 545 )
+
+[node name="controlador" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="controlador"]
+material = SubResource( 4 )
+margin_right = 1280.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
