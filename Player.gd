@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 var velocity : Vector2 = Vector2.ZERO
 export var runSpeed = 100 
 export var jumpSpeed = 200
@@ -14,4 +16,3 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("mUp") && is_on_floor():
 		velocity.y = -jumpSpeed
 	velocity = move_and_slide(velocity,Vector2.UP)
-	print(velocity)
