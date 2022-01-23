@@ -9,7 +9,7 @@ var velocity = Vector2.ZERO
 var state = IDLE
 
 const ACCELERATION = 800
-const MAX_SPEED = 500
+const MAX_SPEED = 600
 const TOLERANCE = 4.0
 
 onready var screen_size = get_viewport_rect().size

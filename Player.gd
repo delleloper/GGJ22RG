@@ -10,13 +10,16 @@ export var gravity = 500
 
 onready var sprite : Sprite = $sprite
 onready var animator := $AnimationPlayer
+
 var velocity : Vector2 = Vector2.ZERO
 var motion = 0
 var coins = 0
+var alive = true
 
+signal dead
 
 func _process(delta):
-	if is_on_floor():
+	if is_on_floor() && alive:
 		if animator.current_animation == "jump":
 			animator.play("land")
 		else:
@@ -26,15 +29,20 @@ func _process(delta):
 				animator.play("idle")
 
 func _physics_process(delta):
-	motion = Input.get_action_strength("mRigth") - Input.get_action_strength("mLeft")
-	velocity.x = lerp(velocity.x, motion * runSpeed,0.3)
-	sprite.flip_h = velocity.x < 0
 	if !is_on_floor():
 		velocity.y += gravity
-	if Input.is_action_just_pressed("mUp") && is_on_floor():
-		velocity.y = -jumpSpeed
-		animator.play("jump")
+	if alive:
+		motion = Input.get_action_strength("mRigth") - Input.get_action_strength("mLeft")
+		velocity.x = lerp(velocity.x, motion * runSpeed,0.3)
+		sprite.flip_h = velocity.x < 0
+		if Input.is_action_just_pressed("mUp") && is_on_floor():
+			velocity.y = -jumpSpeed
+			animator.play("jump")
 	velocity = move_and_slide(velocity,Vector2.UP)
 
 func hit():
-	print("HIT")
+	alive = false
+	motion = 0
+	velocity.x = 0
+	animator.play("hit")
+	emit_signal("dead")

@@ -5,6 +5,8 @@ var inverted = false
 var coinsCount = 0
 onready var platformsPlaceHolders = $Platforms.get_children()
 onready var coins = $coins.get_children()
+onready var timer := $Timer
+
 
 
 func _ready():
@@ -22,21 +24,27 @@ func _ready():
 	for c in coins:
 		if randf() > 0.5:
 			c.queue_free()
+
 func win():
 	get_tree().reload_current_scene()
-	pass
 
-
+func gameOver():
+	timer.start(1)
+	yield(timer,"timeout")
+	get_tree().reload_current_scene()
 
 
 func invert():
+	inverted = !inverted
+	if inverted:
+		$Normal.volume_db = -80
+		$Inversed.volume_db = 0
+	else:
+		$Normal.volume_db = 0
+		$Inversed.volume_db = -80
+	$effect.play()
 	get_tree().call_group("convertibles", "switch")
 	
-
-func _input(event: InputEvent):
-	if event.is_action_pressed("ui_accept"):
-		invert()
-
 
 func _on_Timer_timeout():
 	invert()
