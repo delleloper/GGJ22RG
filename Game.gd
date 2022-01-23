@@ -13,9 +13,13 @@ func win():
 
 
 func invert():
-	get_tree().call_group("Convertibles", "switch")
+	get_tree().call_group("convertibles", "switch")
 	
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_accept"):
 		invert()
+
+
+func _on_Timer_timeout():
+	invert()

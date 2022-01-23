@@ -35,3 +35,6 @@ func _physics_process(delta):
 		velocity.y = -jumpSpeed
 		animator.play("jump")
 	velocity = move_and_slide(velocity,Vector2.UP)
+
+func hit():
+	print("HIT")

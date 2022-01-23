@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objective.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/tinta_alas.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 22.0227
@@ -12,6 +12,39 @@ radius = 278.18
 [sub_resource type="CircleShape2D" id=5]
 radius = 42.4264
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "fly"
+length = 0.3
+loop = true
+step = 0.043
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.129, 0.258 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
 [node name="Objective" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -21,8 +54,8 @@ script = ExtResource( 1 )
 shape = SubResource( 3 )
 
 [node name="Icon" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 1 )
 texture = ExtResource( 2 )
+hframes = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -33,6 +66,11 @@ shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fly"
+anims/RESET = SubResource( 6 )
+anims/fly = SubResource( 7 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
