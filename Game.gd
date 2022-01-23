@@ -22,7 +22,7 @@ func _ready():
 			p.get_child(0).queue_free()
 			p.add_child(plat)
 	for c in coins:
-		if randf() > 0.5:
+		if randf() > 0.45:
 			c.queue_free()
 
 func win():

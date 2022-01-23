@@ -6,3 +6,7 @@ func _on_BtnJugar_pressed():
 
 func _on_BtnSonidos_pressed():
 	AudioServer.set_bus_mute(0, AudioServer.is_bus_mute(0))
+
+
+func _on_Control_pressed():
+	get_tree().change_scene("res://Credits.tscn")

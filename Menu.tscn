@@ -59,3 +59,4 @@ __meta__ = {
 
 [connection signal="pressed" from="Control2/BtnJugar" to="." method="_on_BtnJugar_pressed"]
 [connection signal="pressed" from="Control2/BtnSonidos" to="." method="_on_BtnSonidos_pressed"]
+[connection signal="pressed" from="Control2/Control" to="." method="_on_Control_pressed"]
