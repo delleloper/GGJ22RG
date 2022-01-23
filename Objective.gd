@@ -18,11 +18,15 @@ onready var target_position = global_position
 
 signal captured
 
+func _ready():
+	update_target_position()
+	position = target_position
+
 func update_target_position():
 	var targetLimits = 800
 	var target_vector = Vector2(rand_range(-1, 1), rand_range(-1, 1)) * targetLimits
 	target_position = start_position + target_vector
-	target_position.y = clamp(target_vector.y, 0, 1000)
+	target_position.y = clamp(target_vector.y, 0, 800)
 	target_position.x = wrapf(target_vector.x, 0,screen_size.x)
 	
 func is_at_target_position(): 

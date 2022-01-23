@@ -10,7 +10,7 @@ radius = 22.0227
 radius = 278.18
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 42.4264
+radius = 16.1245
 
 [sub_resource type="Animation" id=6]
 length = 0.001
