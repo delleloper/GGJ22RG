@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objective.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/Fondos/fnd_piso-pared.png" type="Texture" id=9]
 [ext_resource path="res://assets/SFX/arpegio cambio a inverso.wav" type="AudioStream" id=10]
 [ext_resource path="res://ink.gd" type="Script" id=11]
+[ext_resource path="res://assets/Fondos/fnd_marco-completo.png" type="Texture" id=12]
 
 [sub_resource type="PhysicsMaterial" id=2]
 
@@ -21,8 +22,8 @@ extents = Vector2( 962, 32 )
 script = ExtResource( 6 )
 
 [node name="FndPiso-pared" type="Sprite" parent="."]
-position = Vector2( 958, 546 )
 texture = ExtResource( 9 )
+centered = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -185,6 +186,11 @@ gravity = 50
 
 [node name="Objective" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1430, 389 )
+
+[node name="FndMarco-completo" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.407843 )
+texture = ExtResource( 12 )
+centered = false
 
 [node name="ink" type="Node2D" parent="."]
 position = Vector2( -22, -13 )

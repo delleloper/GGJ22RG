@@ -43,6 +43,7 @@ func invert():
 		$Normal.volume_db = 0
 		$Inversed.volume_db = -80
 	$effect.play()
+	$ink.inverted = inverted
 	get_tree().call_group("convertibles", "switch")
 	
 
