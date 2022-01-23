@@ -1,6 +1,6 @@
 extends Node2D
 
-var inkLevel = 200
+var inkLevel = 100
 var maxLevel = 8
 
 func _process(delta):

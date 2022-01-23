@@ -42,7 +42,7 @@ func _physics_process(delta):
 				state = IDLE
 
 	velocity = move_and_slide(velocity)
-	print(target_position)
+#	print(target_position)
 	
 func accelerate_to_point(point, acceleration_scalar):
 	var direction = (point - global_position).normalized()
