@@ -1,41 +1,18 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objective.tscn" type="PackedScene" id=2]
 [ext_resource path="res://moneda.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tinta_monedas.png" type="Texture" id=4]
-[ext_resource path="res://Platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Platform placeholder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game.gd" type="Script" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://Convertible.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Fondos/fnd_piso-pared.png" type="Texture" id=9]
-[ext_resource path="res://TrickPlatform.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ink.gd" type="Script" id=11]
-[ext_resource path="res://VanishPlatform.tscn" type="PackedScene" id=12]
 
 [sub_resource type="PhysicsMaterial" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 962, 32 )
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform float colorAfectar = 0.0;
-
-void fragment(){
-    vec4 c = textureLod(SCREEN_TEXTURE,SCREEN_UV,0.0).rgba;
-    c.r = 1.0 - c.r;
-    c.g = 1.0 - c.g;
-    c.b = 1.0 - c.b;
-    c.a = colorAfectar;
-    COLOR.rgba = c;
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/colorAfectar = 0.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 6 )
@@ -48,18 +25,19 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 735, 872 )
-jumpSpeed = 1000
+position = Vector2( 713, 693 )
+jumpSpeed = 1200
 gravity = 50
 
 [node name="Objective" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1147, 367 )
+position = Vector2( 1430, 389 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 977, 958 )
 physics_material_override = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -16, -98 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Floor"]
@@ -67,57 +45,67 @@ visible = false
 polygon = PoolVector2Array( -964, 32, -963, -33, 963, -33, 964, 31 )
 
 [node name="moneda" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1409, 909 )
-
-[node name="Platform" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1588, 888 )
-
-[node name="Platform5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1183, 748 )
-
-[node name="Platform2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 847, 897 )
-
-[node name="Platform6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 825, 539 )
-
-[node name="Platform8" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1178, 588 )
-
-[node name="Platform9" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1739, 745 )
-
-[node name="Platform10" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1519, 589 )
-
-[node name="Platform4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 198, 772 )
-
-[node name="Platform7" parent="." instance=ExtResource( 5 )]
-position = Vector2( 150, 449 )
-
-[node name="CanvasModulate" type="Sprite" parent="."]
-visible = false
-material = SubResource( 4 )
-position = Vector2( 958, 543 )
-scale = Vector2( 33.1875, 19.2031 )
-texture = ExtResource( 7 )
-
-[node name="TrickPlatform" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1638, 444 )
+position = Vector2( 179, 565 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.5
 autostart = true
 
-[node name="Convertible" parent="." instance=ExtResource( 8 )]
-position = Vector2( 517, 402 )
+[node name="Platforms" type="Node2D" parent="."]
 
-[node name="Convertible2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 350, 850 )
+[node name="Platform placeholder" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 175, 667 )
 
-[node name="Convertible3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 354, 106 )
+[node name="Platform placeholder2" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 178, 451 )
+
+[node name="Platform placeholder3" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 181, 223 )
+
+[node name="Platform placeholder4" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 566, 220 )
+
+[node name="Platform placeholder5" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 563, 456 )
+
+[node name="Platform placeholder6" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 560, 666 )
+
+[node name="Platform placeholder7" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 863, 666 )
+
+[node name="Platform placeholder8" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 863, 464 )
+
+[node name="Platform placeholder9" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 869, 222 )
+
+[node name="Platform placeholder10" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1186, 219 )
+
+[node name="Platform placeholder11" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1203, 464 )
+
+[node name="Platform placeholder12" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1195, 671 )
+
+[node name="Platform placeholder13" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1517, 663 )
+
+[node name="Platform placeholder14" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1528, 461 )
+
+[node name="Platform placeholder15" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1528, 216 )
+
+[node name="Platform placeholder16" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1796, 219 )
+
+[node name="Platform placeholder17" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1788, 458 )
+
+[node name="Platform placeholder18" parent="Platforms" instance=ExtResource( 5 )]
+position = Vector2( 1788, 666 )
 
 [node name="ink" type="Node2D" parent="."]
 script = ExtResource( 11 )
@@ -127,7 +115,57 @@ position = Vector2( 123, 110 )
 texture = ExtResource( 4 )
 hframes = 9
 
-[node name="VanishPlatform" parent="ink/TintaMonedas" instance=ExtResource( 12 )]
-position = Vector2( 456, 434 )
+[node name="coins" type="Node2D" parent="."]
+
+[node name="moneda2" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 177, 330 )
+
+[node name="moneda5" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 177, 112 )
+
+[node name="moneda6" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 568, 94 )
+
+[node name="moneda7" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 564, 327 )
+
+[node name="moneda8" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 566, 560 )
+
+[node name="moneda9" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 862, 558 )
+
+[node name="moneda3" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 868, 335 )
+
+[node name="moneda10" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1198, 113 )
+
+[node name="moneda12" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1196, 340 )
+
+[node name="moneda13" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1196, 567 )
+
+[node name="moneda14" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1533, 349 )
+
+[node name="moneda15" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1529, 104 )
+
+[node name="moneda16" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1789, 100 )
+
+[node name="moneda17" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1789, 345 )
+
+[node name="moneda18" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1791, 563 )
+
+[node name="moneda11" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 868, 117 )
+
+[node name="moneda4" parent="coins" instance=ExtResource( 3 )]
+position = Vector2( 1511, 565 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
